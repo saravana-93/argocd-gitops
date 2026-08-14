@@ -1,8 +1,10 @@
 # guestbook-ui/deployment.yaml
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guestbook-ui
+  namespace: guestbook-ui
 spec:
   replicas: 1
   selector:
@@ -14,18 +16,21 @@ spec:
         app: guestbook-ui
     spec:
       containers:
-        - image: gcr.io/google-samples/gb-frontend:v5
-          name: guestbook-ui
+        - name: guestbook-ui
+          image: gcr.io/google-samples/gb-frontend:v5
           ports:
             - containerPort: 80
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: guestbook-ui
+  namespace: guestbook-ui
 spec:
-  ports:
-  - port: 80
-    targetPort: 80
+  type: ClusterIP
   selector:
     app: guestbook-ui
+  ports:
+    - port: 80
+      targetPort: 80
