@@ -21,7 +21,7 @@ spec:
           ports:
             - containerPort: 80
 
-strategy:
-  blueGreen:
-    activeService: whoami
-    previewService: whoami-preview
+  strategy:
+    blueGreen:
+      activeService: whoami
+      previewService: whoami-preview
