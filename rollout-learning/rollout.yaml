@@ -21,8 +21,7 @@ spec:
           ports:
             - containerPort: 80
 
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+strategy:
+  blueGreen:
+    activeService: whoami
+    previewService: whoami-preview
