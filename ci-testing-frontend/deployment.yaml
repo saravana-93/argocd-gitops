@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: ci-testing-frontend
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: ci-testing-frontend
+    template:
+      metadata:
+        labels:
+          app: ci-testing-frontend
+      spec:
+        containers:
+          - name: ci-testing-frontend
+            image: saravana94/ci-testing-frontend:latest
+            imagePullPolicy: Always
+            ports:
+              - containerPort: 8080
